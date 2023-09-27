@@ -1,9 +1,12 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:provider/provider.dart';
 import 'package:todolist/view_model/todo_view_model.dart';
+
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:todolist/model/todo_model.dart';
 
 class ListCreate extends StatefulWidget {
   const ListCreate({super.key});
@@ -13,8 +16,7 @@ class ListCreate extends StatefulWidget {
 }
 
 class _ListCreateState extends State<ListCreate> {
-  SharedPreferences? _pref;
-  List<String> mainList = List.empty(growable: true);
+  Box<TodoModel>? box;
   TextEditingController textController = TextEditingController();
 
   @override
@@ -24,7 +26,7 @@ class _ListCreateState extends State<ListCreate> {
   }
 
   Future<void> getInstance() async {
-    _pref = await SharedPreferences.getInstance();
+    box = Hive.box('todoList');
   }
 
   @override
@@ -63,12 +65,14 @@ class _ListCreateState extends State<ListCreate> {
                 ),
               ),
             ),
-            //Size(360, 690)
             MaterialButton(
               onPressed: () async {
-                mainList.add(textController.text);
-                await _pref!.setStringList('mainList', mainList);
+                if (box == null) await getInstance();
+
+                await viewModel.postTodoList(textController.text);
                 await viewModel.getTodoList();
+
+                Navigator.pop(context);
               },
               child: Container(
                 width: 320.w,
