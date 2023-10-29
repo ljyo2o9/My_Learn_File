@@ -1,3 +1,28 @@
+IOS 설정
+
+```swift
+// ios / Runner / Info.plist
+<?xml version="1.0" encoding="UTF-8"?>
+http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+   .
+   .
+   .
+   // 추가
+   <key>NSCameraUsageDescription</key>
+   <string>Used to demonstrate image picker plugin</string>
+   <key>NSMicrophoneUsageDescription</key>
+   <string>Used to capture audio for image picker plugin</string>
+   <key>NSPhotoLibraryUsageDescription</key>
+   <string>Used to demonstrate image picker plugin</string>
+</dict>
+</plist>
+```
+Android는 따로 설정 필요 없음\
+\
+사용법
+
 ```dart
 import 'package:image_picker/image_picker.dart';
 
