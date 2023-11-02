@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_example/src/cubit/bloc/movie_bloc.dart';
 
-// import 'package:flutter_example/src/cubit/movie_cubit.dart';
-// import 'package:rxdart/utils.dart';
+import 'bloc/movie_bloc.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -12,7 +10,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('영화 검색'),
+        title: const Text('영화 검색'),
       ),
       body: Column(
         children: [
@@ -32,7 +30,7 @@ class App extends StatelessWidget {
                     );
                   },
                   separatorBuilder: (context, index) =>
-                      Divider(color: Colors.grey),
+                      const Divider(color: Colors.grey),
                   itemCount: state.length,
                 );
               },

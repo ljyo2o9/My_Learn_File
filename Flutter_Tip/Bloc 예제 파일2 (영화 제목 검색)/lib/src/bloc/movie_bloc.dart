@@ -1,11 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_example/src/repository/movie_repository.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../repository/movie_repository.dart';
-
 class MovieBLoc extends Bloc<SearchMovieEvent, List<String>> {
-  MovieRepository _movieRepository;
+  final MovieRepository _movieRepository;
 
   MovieBLoc(this._movieRepository) : super([]) {
     on<SearchMovieEvent>(
