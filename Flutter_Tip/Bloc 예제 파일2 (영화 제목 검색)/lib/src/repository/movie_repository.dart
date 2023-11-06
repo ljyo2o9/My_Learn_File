@@ -305,9 +305,9 @@ class MovieRepository {
   ];
 
   Future<List<String>> search(String key) async {
-    print('Search to Sever $key');
-    await Future.delayed(Duration(milliseconds: 1000));
-
+    //
+    /// where로 searchPreview안에 있는 값을 보고 안에있는 값중 key 값을 contains(포함)하고 있느 값을 List로 변환함
+    /// searchPreview에 있는 값중 key값에 맞는 값을 List형태로 return함
     return searchPreview.where((movie) => movie.contains(key)).toList();
   }
 }
